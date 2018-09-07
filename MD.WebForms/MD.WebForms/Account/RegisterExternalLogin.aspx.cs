@@ -2,20 +2,22 @@
 using Microsoft.Owin.Security;
 using System;
 using System.Web;
+using MD.Data;
+using MD.Identity;
 using MD.WebForms;
 
 public partial class Account_RegisterExternalLogin : System.Web.UI.Page
 {
     protected string ProviderName
     {
-        get { return (string)ViewState["ProviderName"] ?? String.Empty; }
-        private set { ViewState["ProviderName"] = value; }
+        get => (string)ViewState["ProviderName"] ?? String.Empty;
+        private set => ViewState["ProviderName"] = value;
     }
 
     protected string ProviderAccountKey
     {
-        get { return (string)ViewState["ProviderAccountKey"] ?? String.Empty; }
-        private set { ViewState["ProviderAccountKey"] = value; }
+        get => (string)ViewState["ProviderAccountKey"] ?? String.Empty;
+        private set => ViewState["ProviderAccountKey"] = value;
     }
 
     protected void Page_Load()
@@ -79,7 +81,7 @@ public partial class Account_RegisterExternalLogin : System.Web.UI.Page
             return;
         }
         var manager = new UserManager();
-        var user = new ApplicationUser() { UserName = userName.Text };
+        var user = new ApplicationUser { UserName = userName.Text, Email = userName.Text };
         IdentityResult result = manager.Create(user);
         if (result.Succeeded)
         {

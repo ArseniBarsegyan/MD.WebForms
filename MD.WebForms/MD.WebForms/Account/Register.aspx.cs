@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Web.UI;
+using MD.Identity;
 using MD.WebForms;
 
 public partial class Account_Register : Page
@@ -9,7 +10,7 @@ public partial class Account_Register : Page
     protected void CreateUser_Click(object sender, EventArgs e)
     {
         var manager = new UserManager();
-        var user = new ApplicationUser() { UserName = UserName.Text };
+        var user = new ApplicationUser { UserName = UserName.Text, Email = UserName.Text };
         IdentityResult result = manager.Create(user, Password.Text);
         if (result.Succeeded)
         {

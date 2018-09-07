@@ -3,28 +3,15 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Web;
 using System;
-using MD.WebForms;
+using MD.Identity;
 
 namespace MD.WebForms
 {
-    // You can add User data for the user by adding more properties to your User class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
-    {
-    }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
-    }
-
     #region Helpers
     public class UserManager : UserManager<ApplicationUser>
     {
         public UserManager()
-            : base(new UserStore<ApplicationUser>(new ApplicationDbContext()))
+            : base(new UserStore<ApplicationUser>(new AppIdentityDbContext("identity")))
         {
         }
     }
@@ -42,7 +29,7 @@ namespace MD.WebForms
             IAuthenticationManager authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-            authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
         }
 
         public const string ProviderNameKey = "providerName";
