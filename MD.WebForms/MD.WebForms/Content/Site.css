@@ -23,7 +23,45 @@ textarea {
     .jumbotron {
         margin-top: 20px;
     }
+
     .body-content {
         padding: 0;
     }
+}
+
+/* Buttons */
+.button-simple {
+    display: inline-block;
+    border: none; /* Remove borders */
+    color: white; /* Add a text color */
+    padding: 14px 28px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+    text-decoration: none;
+}
+
+.button-default:hover, .button-default:active, .button-default:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.button-success {
+    background-color: #4CAF50;
+}
+
+.button-success:hover {
+    background-color: #46a049;
+}
+
+.button-info {
+    background-color: #2196F3;
+}
+
+    /* Blue */
+.button-info:hover {
+    background: #0b7dda;
+}
+
+.button-simple:disabled {
+    background-color: #e7e7e7;
+    cursor: not-allowed
 }
