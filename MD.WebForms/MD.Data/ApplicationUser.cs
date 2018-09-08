@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace MD.Identity
+namespace MD.Data
 {
+    /// <summary>
+    /// Application user extends <see cref="IdentityUser"/>
+    /// </summary>
     public class ApplicationUser : IdentityUser
     {
         public ApplicationUser()
@@ -10,6 +13,9 @@ namespace MD.Identity
             Notes = new List<Note>();
         }
 
+        /// <summary>
+        /// Notes of user.
+        /// </summary>
         public virtual IEnumerable<Note> Notes { get; set; }
     }
 }

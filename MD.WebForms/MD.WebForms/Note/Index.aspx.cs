@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using MD.Identity;
+using MD.Data;
 using Microsoft.AspNet.Identity;
 
 public partial class Note_Index : Page

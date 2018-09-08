@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Web;
 using System;
-using MD.Identity;
+using MD.Data;
 
 namespace MD.WebForms
 {

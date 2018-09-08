@@ -47,12 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppIdentityDbContext.cs" />
-    <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Note.cs" />
-    <Compile Include="Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MD.Data\MD.Data.csproj">

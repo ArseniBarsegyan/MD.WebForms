@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
-using MD.Identity;
+using MD.Data;
 using Microsoft.AspNet.Identity;
 
 public partial class Note_Create : System.Web.UI.Page

@@ -3,7 +3,6 @@ using Microsoft.Owin.Security;
 using System;
 using System.Web;
 using MD.Data;
-using MD.Identity;
 using MD.WebForms;
 
 public partial class Account_RegisterExternalLogin : System.Web.UI.Page

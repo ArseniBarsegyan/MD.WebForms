@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using System.Web.UI;
-using MD.Identity;
+using MD.Data;
 using MD.WebForms;
 
 public partial class Account_Register : Page
