@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
 using MD.Data;
@@ -19,33 +20,36 @@ public partial class Note_Create : System.Web.UI.Page
             _repository = new NoteRepository(new AppIdentityDbContext());
         }
 
-        if (IsPostBack && photos.PostedFiles != null)
+        if (IsPostBack && photos.PostedFiles.Any())
         {
-            var builder = new StringBuilder();
-
-            foreach (var file in photos.PostedFiles)
+            if (!string.IsNullOrEmpty(photos.PostedFiles.ElementAt(0).FileName))
             {
-                builder.Append(file.FileName);
-                builder.Append(" ");
-            }
-            fileNames.Text = builder.ToString();
+                var builder = new StringBuilder();
 
-            foreach (var file in photos.PostedFiles)
-            {
-                byte[] fileData;
-                using (var binaryReader = new BinaryReader(file.InputStream))
+                foreach (var file in photos.PostedFiles)
                 {
-                    fileData = binaryReader.ReadBytes(file.ContentLength);
+                    builder.Append(file.FileName);
+                    builder.Append(" ");
                 }
-                string imageContent = Convert.ToBase64String(fileData);
-                string fileName = file.FileName;
+                fileNames.Text = builder.ToString();
 
-                var photoModel = new Photo
+                foreach (var file in photos.PostedFiles)
                 {
-                    Image = imageContent,
-                    Name = fileName
-                };
-                _photos.Add(photoModel);
+                    byte[] fileData;
+                    using (var binaryReader = new BinaryReader(file.InputStream))
+                    {
+                        fileData = binaryReader.ReadBytes(file.ContentLength);
+                    }
+                    string imageContent = Convert.ToBase64String(fileData);
+                    string fileName = file.FileName;
+
+                    var photoModel = new Photo
+                    {
+                        Image = imageContent,
+                        Name = fileName
+                    };
+                    _photos.Add(photoModel);
+                }
             }
         }
     }

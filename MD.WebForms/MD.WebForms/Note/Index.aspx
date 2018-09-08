@@ -14,6 +14,14 @@
                         <hr/>
                     </div>
                     <div class="row">
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="MDData">
+                            <Columns>
+                                <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="True" SortExpression="Description" />
+                                <asp:BoundField DataField="Date" HeaderText="Date" ReadOnly="True" SortExpression="Date" />
+                            </Columns>
+                        </asp:GridView>
+                        <asp:LinqDataSource ID="MDData" runat="server" ContextTypeName="DataSet" EntityTypeName="" Select="new (Description, Date, RowError)" TableName="Notes">
+                        </asp:LinqDataSource>
                     </div>
                 </div>
             </div>
