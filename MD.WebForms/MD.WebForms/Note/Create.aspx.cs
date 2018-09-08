@@ -4,26 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
-using MD.Data;
 using MD.Identity;
 using Microsoft.AspNet.Identity;
 
 public partial class Note_Create : System.Web.UI.Page
 {
-    private IRepository<Note> _repository;
-    private readonly List<Photo> _photos = new List<Photo>();
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
-        {
-            _repository = new NoteRepository(new AppIdentityDbContext());
-        }
-
         if (IsPostBack && photos.PostedFiles.Any())
         {
             if (!string.IsNullOrEmpty(photos.PostedFiles.ElementAt(0).FileName))
             {
+                var photoModels = new List<Photo>();
                 var builder = new StringBuilder();
 
                 foreach (var file in photos.PostedFiles)
@@ -48,8 +40,9 @@ public partial class Note_Create : System.Web.UI.Page
                         Image = imageContent,
                         Name = fileName
                     };
-                    _photos.Add(photoModel);
+                    photoModels.Add(photoModel);
                 }
+                Session["UploadedPhotos"] = photoModels;
             }
         }
     }
@@ -60,21 +53,30 @@ public partial class Note_Create : System.Web.UI.Page
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
 
-            var note = new Note
+            if (Session["UploadedPhotos"] is List<Photo> photoModels)
             {
-                UserId = userId,
-                Date = DateTime.Now,
-                Description = description.Text,
-                Photos = _photos
-            };
+                var note = new Note
+                {
+                    UserId = userId,
+                    Date = DateTime.Now,
+                    Description = description.Text
+                };
 
-            foreach (var photoModel in _photos)
-            {
-                photoModel.Note = note;
+                foreach (var photoModel in photoModels)
+                {
+                    photoModel.Note = note;
+                }
+
+                note.Photos = photoModels;
+
+                using (var repository = new NoteRepository(new AppIdentityDbContext()))
+                {
+                    repository.CreateAsync(note);
+                    await repository.SaveAsync();
+                }
+                
+                Session.Remove("UploadedPhotos");
             }
-
-            _repository.CreateAsync(note);
-            await _repository.SaveAsync();
         }
         
         Response.Redirect("Index.aspx");

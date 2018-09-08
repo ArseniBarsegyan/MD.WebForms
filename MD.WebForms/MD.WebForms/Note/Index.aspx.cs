@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,12 +13,14 @@ public partial class Note_Index : Page
     {
         if (!Page.IsPostBack)
         {
-            var repository = new NoteRepository(new AppIdentityDbContext());
-
             if (User != null && User.Identity.IsAuthenticated)
             {
                 var userId = HttpContext.Current.User.Identity.GetUserId();
-                var allNotes = repository.GetAll(userId);
+
+                using (var repository = new NoteRepository(new AppIdentityDbContext()))
+                {
+                    var allNotes = repository.GetAll(userId).ToList();
+                }
             }
         }
     }

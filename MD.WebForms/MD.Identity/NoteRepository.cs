@@ -23,7 +23,7 @@ namespace MD.Identity
 
         public IQueryable<Note> GetAll(string userId)
         {
-            return DbSet.Where(x => x.UserId == userId).Include(x => x.Photos);
+            return DbSet.Where(x => x.UserId == userId);
         }
 
         public async Task<Note> GetByIdAsync(int? id)
