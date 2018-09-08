@@ -11,7 +11,7 @@ namespace MD.WebForms
     public class UserManager : UserManager<ApplicationUser>
     {
         public UserManager()
-            : base(new UserStore<ApplicationUser>(new AppIdentityDbContext("identity")))
+            : base(new UserStore<ApplicationUser>(new AppIdentityDbContext()))
         {
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MD.Data;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MD.Identity
