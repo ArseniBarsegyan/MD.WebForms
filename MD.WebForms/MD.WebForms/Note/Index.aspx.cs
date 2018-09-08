@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using MD.Data;
+using System.Web.UI.WebControls;
+using MD.AdoNet;
 using Microsoft.AspNet.Identity;
 
 public partial class Note_Index : Page
@@ -15,10 +19,16 @@ public partial class Note_Index : Page
             {
                 var userId = HttpContext.Current.User.Identity.GetUserId();
 
-                using (var repository = new Repository<Note>(new AppIdentityDbContext()))
-                {
-                    var allNotes = repository.GetAll().Where(x => x.UserId == userId).ToList();
-                }
+                var context = new DataContext(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+                var notes = context.GetTable<Note>().Where(x => x.UserId == userId);
+                var allIds = from note in notes select note.Id;
+
+                var photos = context.GetTable<Photo>();
+                var selectedPhotos = photos.Where(selectedPhoto => allIds.Any(x => selectedPhoto.Id == x));
+
+                GridView.DataSource = notes;
+                GridView.DataBind();
             }   
         }
     }

@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MD.WebForms", "MD.WebForms\", "{9421994E-6594-48B1-8EAA-C215A30A8AF0}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		ProjectReferences = "{75c25f96-37a2-404c-9da7-1bf01a96576b}|MD.Data.dll;"
+		ProjectReferences = "{75c25f96-37a2-404c-9da7-1bf01a96576b}|MD.Data.dll;{d74bba7a-79ff-4db4-a445-e341d957a38a}|MD.AdoNet.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_49346"
 		Debug.AspNetCompiler.PhysicalPath = "MD.WebForms\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49346\"
@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD.Data", "MD.Data\MD.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD.Migrations", "MD.Migrations\MD.Migrations.csproj", "{31F2EFCE-992E-41B9-B8AD-2985F08C3248}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD.AdoNet", "MD.AdoNet\MD.AdoNet.csproj", "{D74BBA7A-79FF-4DB4-A445-E341D957A38A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{31F2EFCE-992E-41B9-B8AD-2985F08C3248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31F2EFCE-992E-41B9-B8AD-2985F08C3248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31F2EFCE-992E-41B9-B8AD-2985F08C3248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74BBA7A-79FF-4DB4-A445-E341D957A38A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D74BBA7A-79FF-4DB4-A445-E341D957A38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D74BBA7A-79FF-4DB4-A445-E341D957A38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D74BBA7A-79FF-4DB4-A445-E341D957A38A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{9421994E-6594-48B1-8EAA-C215A30A8AF0} = {46C3B504-C48E-434A-8B44-C62ADB24DC7B}
 		{75C25F96-37A2-404C-9DA7-1BF01A96576B} = {1B85CD97-CF02-4E6A-88FA-BBF0EE8A6447}
 		{31F2EFCE-992E-41B9-B8AD-2985F08C3248} = {7179C41D-612C-44D7-AA75-4590394064B0}
+		{D74BBA7A-79FF-4DB4-A445-E341D957A38A} = {1B85CD97-CF02-4E6A-88FA-BBF0EE8A6447}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F85C2F6-FD3B-4C5F-9675-2135586E3E2F}
