@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,11 +15,11 @@ public partial class Note_Index : Page
             {
                 var userId = HttpContext.Current.User.Identity.GetUserId();
 
-                using (var repository = new NoteRepository(new AppIdentityDbContext()))
+                using (var repository = new Repository<Note>(new AppIdentityDbContext()))
                 {
-                    var allNotes = repository.GetAll(userId).ToList();
+                    var allNotes = repository.GetAll().Where(x => x.UserId == userId).ToList();
                 }
-            }
+            }   
         }
     }
 

@@ -69,16 +69,16 @@ public partial class Note_Create : System.Web.UI.Page
 
                 note.Photos = photoModels;
 
-                using (var repository = new NoteRepository(new AppIdentityDbContext()))
+                using (var context = new AppIdentityDbContext())
+                using (var photoRepository = new Repository<Photo>(context))
                 {
-                    repository.CreateAsync(note);
-                    await repository.SaveAsync();
+                    photoRepository.Create(photoModels);
+                    await photoRepository.SaveAsync();
                 }
                 
                 Session.Remove("UploadedPhotos");
             }
+            Server.Transfer("Index.aspx", true);
         }
-        
-        Response.Redirect("Index.aspx");
     }
 }
