@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../Content/Note/index.css"/>
     <div class="container" style="padding-top: 20px;">
         <!-- Loading indicator will be here -->
+        <div class="loader"></div>
         
         <div class="row">
             <div class="col-md-5">
@@ -17,24 +18,26 @@
                         <div class="col-xs-12">
                             <asp:ListView runat="server" ID="ListView">
                                 <ItemTemplate>
-                                    <asp:LinkButton runat="server" style="cursor: pointer;" CssClass="list-group-item clearfix" OnClick="ListItem_OnClick">
-                                        <span class="pull-left">
-                                            <img src='<%# $"data:image/gif;base64, {Eval("Image")}" %>' class="img-responsive note-image" alt="No photo"/>
-                                        </span>
-                                        <div class="pull-right text-container">
-                                            <h4><asp:Label runat="server" Text='<%#string.Format(new CultureInfo("en-GB"), "{0:MMM d, yyyy}", Eval("Date")) %>'></asp:Label></h4>
-                                            <p class="list-group-item-text"><asp:Label runat="server" Text='<%#Eval("Description") %>'></asp:Label></p>
-                                        </div>
-                                    </asp:LinkButton>
+                                    <asp:Panel runat="server" ID="listItem">
+                                        <asp:LinkButton runat="server" style="cursor: pointer;" class="list-group-item clearfix" OnClick="OnClick" >
+                                            <span class="pull-left">
+                                                <img src='<%# $"data:image/gif;base64, {Eval("Image")}" %>' class="img-responsive note-image" alt="No photo"/>
+                                            </span>
+                                            <div class="pull-right text-container">
+                                                <h4><asp:Label runat="server" Text='<%#string.Format(new CultureInfo("en-GB"), "{0:MMM d, yyyy}", Eval("Date")) %>'></asp:Label></h4>
+                                                <p class="list-group-item-text"><asp:Label runat="server" Text='<%#Eval("Description") %>'></asp:Label></p>
+                                            </div>
+                                        </asp:LinkButton>                                        
+                                    </asp:Panel>
                                 </ItemTemplate>
                             </asp:ListView>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7" id="noteDetails">
+            <asp:Panel runat="server" ID="noteDetails" CssClass="col-md-7">
                 <h2>No note selected</h2>
-            </div>
+            </asp:Panel>
         </div>
     </div>
 </asp:Content>

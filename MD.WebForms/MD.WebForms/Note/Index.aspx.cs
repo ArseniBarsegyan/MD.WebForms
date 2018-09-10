@@ -64,11 +64,12 @@ public partial class Note_Index : Page
                     var firstItemInAGroup = group.FirstOrDefault();
                     if (firstItemInAGroup != null)
                     {
-                        viewResult.Add(new { group.Key, firstItemInAGroup.Image, firstItemInAGroup.Description, firstItemInAGroup.Date });
+                        viewResult.Add(new { firstItemInAGroup.Id, firstItemInAGroup.Date, firstItemInAGroup.Description, firstItemInAGroup.Image});
                     }
                 }
 
                 ListView.DataSource = viewResult.AsQueryable();
+                Session["Notes"] = viewResult;
                 ListView.DataBind();
             }   
         }
@@ -79,9 +80,10 @@ public partial class Note_Index : Page
         Response.Redirect("Create.aspx");
     }
 
-    protected void ListItem_OnClick(object sender, EventArgs e)
+    protected void OnClick(object sender, EventArgs e)
     {
-        var test = sender as LinkButton;
-        test.CssClass = "list-group-item clearfix active";
+        var link = sender as LinkButton;
+        var id = link.ClientID;
+        var selectedIndex = int.Parse(id.Substring(id.Length - 1));
     }
 }

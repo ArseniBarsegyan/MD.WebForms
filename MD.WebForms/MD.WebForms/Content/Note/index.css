@@ -12,3 +12,23 @@
     max-width: 160px;
     max-height: 100px;
 }
+
+/* Loading indicator styles */
+.loader {
+    z-index: 2;
+    position: absolute;
+    top: 35%;
+    right: 35%;
+    position: absolute;
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.note-id {
+    display: none;
+}
