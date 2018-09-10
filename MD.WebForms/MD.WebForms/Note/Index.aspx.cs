@@ -29,8 +29,6 @@ public partial class Note_Index : Page
                     orderby p.Id descending
                     select new {p.Image, p.Name, p.Id, p.NoteId };
 
-
-
                 var result = from t in (from n in notes
                         join p in userPhotos on n.Id equals p.NoteId
                         orderby p.Id descending
@@ -43,16 +41,16 @@ public partial class Note_Index : Page
                         })
                     group t by t.Id;
 
-                var res = new List<object>();
+                var viewResult = new List<object>();
 
                 foreach (var group in result)
                 {
                     Console.WriteLine(group.Key);
                     var firstItemInAGroup = group.FirstOrDefault();
-                    res.Add(new { group.Key, firstItemInAGroup.Image, firstItemInAGroup.Description, firstItemInAGroup.Date });
+                    viewResult.Add(new { group.Key, firstItemInAGroup.Image, firstItemInAGroup.Description, firstItemInAGroup.Date });
                 }
 
-                ListView.DataSource = res.AsQueryable();
+                ListView.DataSource = viewResult.AsQueryable();
                 ListView.DataBind();
             }   
         }
@@ -61,5 +59,11 @@ public partial class Note_Index : Page
     protected void NewNote(object sender, EventArgs e)
     {
         Response.Redirect("Create.aspx");
+    }
+
+    protected void ListItem_OnClick(object sender, EventArgs e)
+    {
+        var test = sender as LinkButton;
+        test.CssClass = "list-group-item clearfix active";
     }
 }

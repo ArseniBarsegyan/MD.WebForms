@@ -2,8 +2,6 @@
 <%@ Import Namespace="System.Globalization" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
-    
     <div class="container" style="padding-top: 20px;">
         <!-- Loading indicator will be here -->
         
@@ -18,7 +16,7 @@
                         <div class="col-xs-12">
                             <asp:ListView runat="server" ID="ListView">
                                 <ItemTemplate>
-                                    <a style="cursor: pointer;" class="list-group-item clearfix">
+                                    <asp:LinkButton runat="server" style="cursor: pointer;" CssClass="list-group-item clearfix" OnClick="ListItem_OnClick">
                                         <span class="pull-left">
                                             <img src='<%# $"data:image/gif;base64, {Eval("Image")}" %>' class="img-responsive note-image" alt="Note photo"/>
                                         </span>
@@ -26,7 +24,7 @@
                                             <h4><asp:Label runat="server" Text='<%#string.Format(new CultureInfo("en-GB"), "{0:MMM d, yyyy}", Eval("Date")) %>'></asp:Label></h4>
                                             <p class="list-group-item-text"><asp:Label runat="server" Text='<%#Eval("Description") %>'></asp:Label></p>
                                         </div>
-                                    </a>
+                                    </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:ListView>
                         </div>
