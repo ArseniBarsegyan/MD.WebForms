@@ -28,11 +28,25 @@ public partial class Note_Index : Page
                 var photos = context.GetTable<Photo>()
                     .Where(selectedPhoto => allIds.Any(x => selectedPhoto.Id == x));
 
-                var resultList = from note in notes
-                    join t in photos on note.Id equals t.NoteId
-                    select new {note.Date, note.Description, t.Image};
+                var photosGroupedByNoteId = from g in (from n in notes
+                                                       join p in photos on n.Id equals p.NoteId
+                                                       orderby p.Id descending
+                                                       select new
+                                                       {
+                                                           n.Id,
+                                                           p.Image
+                                                       })
+                                            group g by g.Id;
 
-                ListView.DataSource = resultList;
+                var viewResult = new List<object>();
+
+                foreach (var group in photosGroupedByNoteId)
+                {
+                    var firstItemInAGroup = group.FirstOrDefault();
+                    viewResult.Add(new { group.Key, firstItemInAGroup.Image });
+                }
+
+                ListView.DataSource = viewResult.AsQueryable();
                 ListView.DataBind();
             }   
         }
