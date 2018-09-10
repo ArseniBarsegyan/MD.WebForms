@@ -2,6 +2,7 @@
 <%@ Import Namespace="System.Globalization" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <link rel="stylesheet" type="text/css" href="../Content/Note/index.css"/>
     <div class="container" style="padding-top: 20px;">
         <!-- Loading indicator will be here -->
         
@@ -31,22 +32,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-7" id="noteDetails">
+                <h2>No note selected</h2>
+            </div>
         </div>
     </div>
-    
-    <style type="text/css">
-        .text-container {
-            text-overflow: ellipsis;
-            width: 200px;
-            height: 70px;
-            white-space: normal;
-            overflow: hidden;
-            padding: 10px;
-        }
-
-        .note-image {
-            max-width: 160px;
-            max-height: 100px;
-        }
-    </style>
 </asp:Content>

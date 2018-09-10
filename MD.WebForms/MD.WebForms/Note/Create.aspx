@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Create.aspx.cs" Inherits="Note_Create"  Async="true" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <link rel="stylesheet" type="text/css" href="../Content/Note/create.css"/>
+
     <div class="container">
         <div class="col-xs-8">
             <h2>New note</h2>
@@ -17,29 +19,4 @@
             </div>
         </div>
     </div>
-    
-    <style type="text/css">
-        /* Create new note page styles */
-        .upload {
-            width: 0.1px;
-            height: 0.1px;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .upload + label {
-            border: none; /* Remove borders */
-            color: black; /* Add a text color */
-            padding: 14px 28px; /* Add some padding */
-            cursor: pointer;
-            background-color: #e7e7e7;
-            display: inline-block;
-        }
-
-        .upload:focus + label {
-            cursor: pointer;
-            outline: 1px dotted #000;
-            outline: -webkit-focus-ring-color auto 5px;
-        }
-    </style>
 </asp:Content>
