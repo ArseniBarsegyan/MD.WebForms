@@ -29,7 +29,18 @@ public partial class Note_Index : Page
                     orderby p.Id descending
                     select new {p.Image, p.Name, p.Id, p.NoteId };
 
-                var result = from t in (from n in notes
+                var notesWithoutPhotos = from d in notes
+                    where !(from n in notes
+                        join p in photos on n.Id equals p.NoteId
+                        select n.Id).Contains(d.Id) select new
+                    {
+                        d.Id,
+                        d.Date,
+                        d.Description,
+                        Image = "No photo"
+                    };
+
+                var photoGroups = from t in (from n in notes
                         join p in userPhotos on n.Id equals p.NoteId
                         orderby p.Id descending
                         select new
@@ -42,12 +53,19 @@ public partial class Note_Index : Page
                     group t by t.Id;
 
                 var viewResult = new List<object>();
+                foreach (var note in notesWithoutPhotos)
+                {
+                    viewResult.Add(note);
+                }
 
-                foreach (var group in result)
+                foreach (var group in photoGroups)
                 {
                     Console.WriteLine(group.Key);
                     var firstItemInAGroup = group.FirstOrDefault();
-                    viewResult.Add(new { group.Key, firstItemInAGroup.Image, firstItemInAGroup.Description, firstItemInAGroup.Date });
+                    if (firstItemInAGroup != null)
+                    {
+                        viewResult.Add(new { group.Key, firstItemInAGroup.Image, firstItemInAGroup.Description, firstItemInAGroup.Date });
+                    }
                 }
 
                 ListView.DataSource = viewResult.AsQueryable();

@@ -19,7 +19,7 @@
                                 <ItemTemplate>
                                     <asp:LinkButton runat="server" style="cursor: pointer;" CssClass="list-group-item clearfix" OnClick="ListItem_OnClick">
                                         <span class="pull-left">
-                                            <img src='<%# $"data:image/gif;base64, {Eval("Image")}" %>' class="img-responsive note-image" alt="Note photo"/>
+                                            <img src='<%# $"data:image/gif;base64, {Eval("Image")}" %>' class="img-responsive note-image" alt="No photo"/>
                                         </span>
                                         <div class="pull-right text-container">
                                             <h4><asp:Label runat="server" Text='<%#string.Format(new CultureInfo("en-GB"), "{0:MMM d, yyyy}", Eval("Date")) %>'></asp:Label></h4>
