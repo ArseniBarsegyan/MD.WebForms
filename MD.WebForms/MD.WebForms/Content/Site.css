@@ -127,10 +127,10 @@ textarea {
     text-decoration: none;
 }
 
-.button-default:hover, .button-default:active, .button-default:visited {
-    color: white;
-    text-decoration: none;
-}
+    .button-simple:hover, .button-simple:active, .button-simple:visited {
+        color: white;
+        text-decoration: none;
+    }
 
 .button-success {
     background-color: #4CAF50;

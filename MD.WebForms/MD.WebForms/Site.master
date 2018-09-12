@@ -38,6 +38,7 @@
         </asp:ScriptManager>
 
         <div class="topnav">
+            <a runat="server" href="Default.aspx">MD</a>
             <a runat="server" href="~/Note/Index">Notes</a>
             <asp:LoginView runat="server" ViewStateMode="Disabled">
                 <AnonymousTemplate>
@@ -63,14 +64,12 @@
                 </LoggedInTemplate>
             </asp:LoginView>
         </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
-        </div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <hr />
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+        </footer>
     </form>
 </body>
 </html>
