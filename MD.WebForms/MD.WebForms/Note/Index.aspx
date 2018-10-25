@@ -4,9 +4,6 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../Content/Note/index.css"/>
     <div class="container" style="padding-top: 20px;">
-        <!-- Loading indicator will be here -->
-        <div class="loader"></div>
-        
         <div class="row">
             <div class="col-md-5">
                 <div class="row">
@@ -19,7 +16,7 @@
                             <asp:ListView runat="server" ID="ListView">
                                 <ItemTemplate>
                                     <asp:Panel runat="server" ID="listItem">
-                                        <asp:LinkButton runat="server" style="cursor: pointer;" class="list-group-item clearfix" OnClick="OnClick" >
+                                        <asp:LinkButton runat="server" style="cursor: pointer;" class="list-group-item clearfix" OnClick="OnNoteClick" >
                                             <span class="pull-left">
                                                 <img src='<%# $"data:image/gif;base64, {Eval("Image")}" %>' class="img-responsive note-image" alt="No photo"/>
                                             </span>
@@ -39,5 +36,14 @@
                 <h2>No note selected</h2>
             </asp:Panel>
         </div>
+        <!-- Loading indicator will be here -->
+        <asp:Panel runat="server" ID="Loader" CssClass="loader"></asp:Panel>
     </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".loader").hide();
+        });
+    </script>
+    
 </asp:Content>

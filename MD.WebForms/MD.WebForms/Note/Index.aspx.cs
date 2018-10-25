@@ -80,10 +80,12 @@ public partial class Note_Index : Page
         Response.Redirect("Create.aspx");
     }
 
-    protected void OnClick(object sender, EventArgs e)
+    protected void OnNoteClick(object sender, EventArgs e)
     {
+        Loader.Visible = true;
         var link = sender as LinkButton;
-        var id = link.ClientID;
+        var id = link?.ClientID;
         var selectedIndex = int.Parse(id.Substring(id.Length - 1));
+        Loader.Visible = false;
     }
 }

@@ -16,10 +16,9 @@
 /* Loading indicator styles */
 .loader {
     z-index: 2;
-    position: absolute;
-    top: 35%;
-    right: 35%;
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    right: 50%;
     border: 4px solid #f3f3f3;
     border-radius: 50%;
     border-top: 4px solid #3498db;
@@ -31,4 +30,25 @@
 
 .note-id {
     display: none;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

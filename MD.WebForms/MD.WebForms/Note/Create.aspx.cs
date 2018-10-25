@@ -78,7 +78,7 @@ public partial class Note_Create : System.Web.UI.Page
                 
                 Session.Remove("UploadedPhotos");
             }
-            Server.Transfer("Index.aspx", true);
+            Response.Redirect("Index.aspx");
         }
     }
 }
